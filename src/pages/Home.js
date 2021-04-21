@@ -17,6 +17,21 @@ class Home extends Component {
             })
         })
     }
+    handleSort = () => {
+        if (this.state.sorted === 'ascending') {
+          const sortedEmployees = this.state.employees.sort((a, b) => {
+            return a.name.last.localeCompare(b.name.last);
+          });
+    
+          this.setState({ employees: sortedEmployees, sorted: 'descending' });
+        } else {
+          const sortedEmployees = this.state.employees.sort((a, b) => {
+            return b.name.last.localeCompare(a.name.last);
+          });
+    
+          this.setState({ employees: sortedEmployees, sorted: 'ascending' });
+        }
+      };
     handleInputChange=(event) => {
         const {name, value} = event.target
         this.setState({[name]: value}) 

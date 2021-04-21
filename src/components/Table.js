@@ -1,12 +1,12 @@
 import React from 'react';
 function Table (props) {
     return (
-        <table class="table">
+        <table class="table table-dark table-hover">
         <thead>
           <tr>
             <th scope="col">Image</th>
             <th scope="col">First</th>
-            <th scope="col">Last</th>
+            <th scope="col">Last <i className="bi bi-funnel" onClick={props.handleSort}></i></th>
             <th scope="col">Email</th>
             <th scope="col">Phone</th>
           </tr>

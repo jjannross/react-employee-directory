@@ -1,0 +1,11 @@
+body {
+    font-family: 'Arimo', sans-serif;
+  }
+  
+  table {
+      font-size: 28px;
+  }
+  
+  .icon:hover{
+      opacity: .2 ;
+  }
