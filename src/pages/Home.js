@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import api from '../utils/API';
+import API from '../utils/API';
 import Table from '../components/Table'
 import Search from '../components/Search'
 
@@ -7,10 +7,11 @@ class Home extends Component {
     state = {
         people: [], 
         original: [],
-        input: ""
+        input: "",
+        sortOrder: 'asc'
     }
     componentDidMount(){
-        api.getEmployee().then(response => {
+        API.getEmployee().then(response => {
             this.setState({
                 people: response.data.results,
                 original: response.data.results
@@ -18,18 +19,19 @@ class Home extends Component {
         })
     }
     handleSort = () => {
-        if (this.state.sorted === 'ascending') {
-          const sortedEmployees = this.state.employees.sort((a, b) => {
+        console.log(this.state)
+        if (this.state.sortOrder === 'asc') {
+          const sortedEmployees = this.state.people.sort((a, b) => {
             return a.name.last.localeCompare(b.name.last);
           });
     
-          this.setState({ employees: sortedEmployees, sorted: 'descending' });
+          this.setState({ people: sortedEmployees, sortOrder: 'desc' });
         } else {
-          const sortedEmployees = this.state.employees.sort((a, b) => {
+          const sortedEmployees = this.state.people.sort((a, b) => {
             return b.name.last.localeCompare(a.name.last);
           });
     
-          this.setState({ employees: sortedEmployees, sorted: 'ascending' });
+          this.setState({ people: sortedEmployees, sortOrder: 'asc' });
         }
       };
     handleInputChange=(event) => {
@@ -44,7 +46,7 @@ class Home extends Component {
         return(
             <>
                 <Search input={this.state.input} handleInputChange={this.handleInputChange}/>
-                <Table people = {this.state.people} />
+                <Table people={this.state.people} handleSort={this.handleSort} />
             </>
         )
     }

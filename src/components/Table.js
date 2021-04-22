@@ -1,7 +1,7 @@
 import React from 'react';
 function Table (props) {
     return (
-        <table class="table table-dark table-hover">
+        <table className="table table-dark table-hover">
         <thead>
           <tr>
             <th scope="col">Image</th>
@@ -12,10 +12,10 @@ function Table (props) {
           </tr>
         </thead>
         <tbody>
-            {props.people.length>0 ? props.people.map(person => {
+            {props.people.length>0 ? props.people.map((person, index) => {
                 return (
-                    <tr>
-                    <th scope="row"> <img src={person.picture.thumbnail}/> </th>
+                    <tr key={index}>
+                    <th scope="row"> <img src={person.picture.thumbnail} alt="avatar" /> </th>
                     <td>{person.name.first}</td>
                     <td>{person.name.last}</td>
                     <td>{person.email}</td>
